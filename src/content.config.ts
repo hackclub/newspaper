@@ -45,7 +45,7 @@ const posts = defineCollection({
           message: "Slug must be lowercase, alphanumeric, and kebab-case",
         }
       ),
-      Authors: transformedPropertySchema.rich_text.transform((text) => text.split(',')),
+      Authors: transformedPropertySchema.multi_select,
       Tags: transformedPropertySchema.multi_select
     }),
   }),
