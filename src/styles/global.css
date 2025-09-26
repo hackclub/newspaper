@@ -36,52 +36,44 @@
 /* More fonts! */
 @font-face {
   font-family: 'Atkinson Hyperlegible';
-  src: url('/assets/fonts/Atkinson_Hyperlegible/AtkinsonHyperlegible-Regular.ttf')
-      format('truetype');
+  src: url('/assets/fonts/Atkinson_Hyperlegible.woff2')
+      format('woff2');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'IBM Plex Sans';
-  src: url('/assets/fonts/IBM_Plex_Sans/IBMPlexSans-VariableFont_wdth,wght.ttf')
-      format('truetype supports variations'),
-      url('/assets/fonts/IBM_Plex_Sans/IBMPlexSans-VariableFont_wdth,wght.ttf')
-      format('truetype-variations');
+  src: url('/assets/fonts/IBM_Plex_Sans.woff2')
+      format('woff2');
   font-weight: 100 700;
 }
 
 @font-face {
   font-family: 'Lexend';
-  src: url('/assets/fonts/Lexend/Lexend-VariableFont_wght.ttf')
-      format('truetype supports variations'),
-      url('/assets/fonts/Lexend/Lexend-VariableFont_wght.ttf')
-      format('truetype-variations');
+  src: url('/assets/fonts/Lexend.woff2')
+      format('woff2');
   font-weight: 100 900;
 }
 
 @font-face {
   font-family: 'Lora';
-  src: url('/assets/fonts/Lora/Lora-VariableFont_wght.ttf')
-      format('truetype supports variations'),
-      url('/assets/fonts/Lora/Lora-VariableFont_wght.ttf')
-      format('truetype-variations');
+  src: url('/assets/fonts/Lora.woff2')
+      format('woff2');
   font-weight: 400 700;
 }
 
 @font-face {
   font-family: 'Fairplay Display';
-  src: url('/assets/fonts/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf')
-      format('truetype supports variations'),
-      url('/assets/fonts/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf')
-      format('truetype-variations');
+  src: url('/assets/fonts/Playfair_Display.woff2')
+      format('woff2');
   font-weight: 400 900;
 }
 
 @font-face {
   font-family: 'VT323';
-  src: url('/assets/fonts/VT323/VT323-Regular.ttf')
-      format('truetype');
+  src: url('/assets/fonts/VT323.woff2')
+      format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
