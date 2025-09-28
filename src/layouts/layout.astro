@@ -4,7 +4,7 @@ import "@fontsource/atkinson-hyperlegible";
 import "@fontsource/instrument-sans";
 import "@fontsource/instrument-sans/700.css";
 import SpeedInsights from "@vercel/speed-insights/astro";
-import Analytics from "@vercel/analytics/astro";
+import Posthog from "@components/posthog.astro";
 import Header from "@components/header.astro";
 import Footer from "@components/footer.astro";
 
@@ -92,8 +92,9 @@ const {
       title="The Hacker Press"
       href={new URL("rss.xml", Astro.site)}
     />
-    <SpeedInsights />
-    <Analytics />
+    
+    <SpeedInsights /> <!-- i have a need for speed! -->
+    <Posthog /> <!-- analytics and whatever else posthog offers! -->
   </head>
   <body>
     <a class="absolute bg-[#ffdab3] border-1 font-atkinson text-xl p-3 m-3 left-0 -translate-y-20 focus:translate-y-0" href="#main-content">Skip to Main Content</a>
