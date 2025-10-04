@@ -31,23 +31,26 @@ const metaData = {
 ---
 
 <Layout title={post.data.properties.Name} headerTheme="dark" metaData={metaData}>
-  <div class="flex flex-col min-h-screen text-text">
-    <div class="flex min-h-screen">
-      <div class="w-full mx-auto">
+      <div class="mx-auto text-text">
         <header
-          class="w-full py-8 px-30 pt-10 bg-accent-header text-white pb-6 sm:pb-8 overflow-y-auto"
+          class="flex gap-5 w-full py-8 px-30 pt-10 bg-accent-header text-white pb-6 sm:pb-8"
         >
-          <h1
-            class="text-4xl sm:text-5xl/[130%] font-lora mb-6 w-full max-w-4xl"
-          >
-            {post.data.properties.Name}
-          </h1>
-          <div class="flex flex-col xl:flex-row gap-10">
-            <img
-              src={post.data.properties.Image}
-              alt={post.data.properties.ImageAlt}
-              class="w-[50vw] max-w-full h-[45vh] object-cover max-h-full"
-            />
+          <p class="text-accent-orange font-vt323 md:text-right text-4xl writing-lr mr-3 mt-3" aria-hidden="true">The Hacker Press</p>
+          <!-- warning - "writing-lr" is NOT a tailwind class and is located in global.css -->
+          <div>
+            <h1
+              class="text-4xl sm:text-5xl/[130%] font-lora mb-6 w-full max-w-4xl"
+            >
+              {post.data.properties.Name}
+            </h1>
+            <div class="flex flex-col xl:flex-row gap-10">
+            <div class="ml-[7px] shadow-[-7px_7px_orange]">
+              <img
+                src={post.data.properties.Image}
+                alt={post.data.properties.ImageAlt}
+                class="w-[50vw] max-w-full h-100 object-cover max-h-full"
+              />
+            </div>
             <div>
               <p class="text-lg font-atkinson sm:text-2xl mb-5">{post.data.properties.Description}</p>
               <p class="text-gray-400 font-lexend font-light">
@@ -85,15 +88,14 @@ const metaData = {
                 })}
               </div>
             </div>
+            </div>
           </div>
         </header>
-        <div class="p-6 sm:p-8 overflow-y-auto max-w-7/10 mx-auto xl:grid xl:grid-cols-[1fr_325px]">
+        <div class="p-6 sm:p-8 max-w-7/10 mx-auto xl:grid xl:grid-cols-[1fr_325px]">
           <article class="prose prose-invert max-w-none lg:prose-lg text-text font-atkinson mb-16 grow">
             <slot />
           </article>
           <LoopsCta />
         </div>
       </div>
-    </div>
-  </div>
 </Layout>
