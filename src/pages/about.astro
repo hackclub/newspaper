@@ -1,0 +1,59 @@
+---
+import Layout from "@layouts/layout.astro";
+---
+
+<Layout title="About" headerTheme="dark">
+    <header
+      class="bg-accent-header"
+    >
+      <div class="py-8 mx-10 md:mx-auto md:max-w-3/4 xl:max-w-1/2 pt-10 text-white pb-6 sm:pb-8">
+        <p
+          class="text-accent-orange font-vt323 text-3xl md:text-4xl"
+          aria-hidden="true"
+        >
+          /about us, hai!
+        </p>
+        <h1 class="text-3xl sm:text-4xl xl:text-5xl/[130%] font-instrument mb-6">
+          <span class="font-lora">The Hacker Press</span> is <span class="font-phantom font-bold text-[1.2em] bg-gradient-to-r from-[#ff8c37] to-[#f1c40f] text-transparent bg-clip-text">Hack&nbsp;Club</span>'s<br />
+          <span class="bg-gray-100 px-2 pb-1 rounded-md text-[#121326]">Chaotic Attempt at a Blog</span>
+        </h1>
+        <div class="ml-[7px] shadow-[-7px_7px_orange]">
+          <img
+            src="/assets/Assemble2.jpg"
+            alt="Hack Clubbers working together at Assemble, a Hack Club event. They're sitting at a rectangular table with laptops, some looking at a large wall-mounted TV showing VS Code."
+            class="w-full h-100 object-cover max-h-full"
+          />
+        </div>
+      </div>
+    </header>
+    <div class="font-atkinson text-[#121326] mx-10 sm:mx-20 md:max-w-1/2 md:mx-auto mb-15">
+        <h2 class="font-flex-sans text-3xl text-[#071C4A] mt-7">About <i>The Hacker Press</i></h2>
+        <p class="mt-2">The Hacker Press is a project by the Newspaper Team which aims to show Hack Clubbers and outsiders what Hack Club is up to. We talk about events we've run, people we've met, mistakes made, advice, and way more. We aim to show how lively Hack Club is on the inside, to the outside world!</p>
+        <p class="mt-2">We document Hack Club's past doing for people to look back and remember, because we've done AWESOME things together! Hack Clubbers have flown to China, built 3D printers and computers and games, run events, and so much more.</p>
+
+        <div class="flex flex-row gap-2 mt-2">
+          <a href="/team" class="bg-btn-blue hover:bg-btn-blue-hover w-full sm:w-fit cursor-pointer px-4 py-2 rounded-full">Our Jank Team</a>
+          <a href="https://forms.hackclub.com/hacker-press-feedback" target="_blank" class="bg-btn-blue hover:bg-btn-blue-hover w-full sm:w-fit cursor-pointer px-4 py-2 rounded-full">Feedback</a>
+        </div>
+
+        <h2 class="font-flex-sans text-3xl text-[#071C4A] mt-7">About <i>The Newspaper Team</i></h2>
+        <p class="mt-2">The Newspaper Team is a Hack Club Community Team (and not a news company). Our Community Teams run cool things like magical events, moderate our spaces, welcome newcomers and more!</p>
+        <p class="mt-2">Newspaper keeps Hack Clubbers up-to-date on events and programs they can participate in, how they can get involved, and what their fellow Hack Clubbers are up to. For example, Newspaper informs people about YSWS programs they can participate in (a YSWS is a program where You Ship a project based on a criteria and We Ship a prize in return).</p>
+        <p class="mt-2">We do this through a variety of publications: a weekly bulletin in a Slack channel called Happenings to over 14,000 channel members, a emailed newsletter to thousands, and this blog (with more coming soon)! Unfortunately, we don't mail actual newspapers, but who knows, that might happen someday :).</p>
+        <p class="mt-2">To reach out to the Newspaper Team with inquiries, complaints, article issues, or just to say hello (hi!), please email newspaper@hackclub.com.</p>
+
+        <h2 class="font-flex-sans text-3xl text-[#071C4A] mt-7">About <i>Hack Club</i></h2>
+        <img src="/assets/Outernet1.jpg" alt="Two teenagers working together and looking at a laptop among others in the background at Outernet, a Hack Club event. On the same table, 8 large red buttons sit." class="w-full object-cover my-4" />
+
+        <p class="mt-2">Hack Club is a global nonprofit network of high school makers & student-led coding clubs where young people build the agency, the network, & the technical talent to think big & do big things in the world. Founded in 2014 by 16-year-old Zach Latta, Hack Clubs are now in nearly 400 high schools with 10,000 students each year.</p>
+        <p class="mt-2">Hack Club has been profiled on the TODAY Show, in the Wall Street Journal, and in many other publications around the country.</p>
+        <p class="mt-2">We are majority run by teenagers, for teenagers. Always built with love &#60;3.</p>
+
+        <div class="flex flex-row gap-2 mt-2">
+          <a href="https://hackclub.com/" target="_blank" class="bg-btn-blue hover:bg-btn-blue-hover w-full sm:w-fit cursor-pointer px-4 py-2 rounded-full">Learn More</a>
+          <a href="https://hackclub.com/slack?reason=The%20Hacker%20Press&utm_source=the-hacker-press&utm_content=about-us-page" target="_blank" class="bg-btn-blue hover:bg-btn-blue-hover w-full sm:w-fit cursor-pointer px-4 py-2 rounded-full">Teens: Join us!</a>
+          <a href="https://hackclub.com/donate" target="_blank" class="bg-btn-blue hover:bg-btn-blue-hover w-full sm:w-fit cursor-pointer px-4 py-2 rounded-full">Donate</a>
+        </div>
+    </div>
+
+</Layout>
