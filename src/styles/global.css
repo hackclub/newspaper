@@ -81,7 +81,6 @@
 
 @theme {
   --color-crust: #0f0000;
-  --color-crust-text: #ffffff;
   --color-accent: #a7ef5f;
   --color-accent-header: #060e1f;
   --color-accent-orange: #faaa40;
@@ -92,6 +91,11 @@
   --color-heading: #3f1717;
   --color-text: #3f1717;
   --color-input: #3f3939;
+
+  /* buttons (btn) me thinks */
+  --color-btn-blue: #90d4ff;
+  --color-btn-blue-hover: #80ceff;
+  --color-btn-text: #26370e;
 
   --font-instrument: "Instrument Sans", system-ui, sans-serif;
   --font-heading: var(--font-instrument);
