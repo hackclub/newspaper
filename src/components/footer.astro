@@ -1,77 +1,120 @@
 ---
 import ArrowRight from "@assets/arrow-right.svg";
 import HcFlag from "@assets/hc-flag-white.svg";
+
+import email from "@assets/icons/email.svg";
+import github from "@assets/icons/github.svg";
+import instagram from "@assets/icons/instagram.svg";
+import twitterX from "@assets/icons/twitterX.svg";
+import youtube from "@assets/icons/youtube.svg";
+
+// add icon imports above (^) to here
+// literally any import can be the typof so long as it's an svg so i used `email`
+// this is so jank looking LOL
+const icons: Record<string, typeof email> = { email, github, instagram, twitterX, youtube };
+
 import { Image } from "astro:assets";
 
 const linkColumns = [
   {
-    title: "Links",
+    title: "The Hacker Press",
     links: [
       {
-        text: "Learn about Hack Club",
-        href: "https://hackclub.com",
+        text: "About Us (hai!)",
+        href: "/about",
       },
       {
-        text: "View our source code",
+        text: "The Team",
+        href: "/team",
+      },
+      {
+        text: "Source Code",
         href: "https://github.com/hackclub/newspaper",
       },
-      {
-        text: "Join the community Slack",
-        href: "https://hackclub.com/slack?reason=Hack%20Club's%20Newspaper",
-      },
     ],
   },
   {
-    title: "Hack Club's Socials",
+    title: "Hack Club",
     links: [
       {
-        text: "X/Twitter",
-        href: "https://x.com/hackclub",
+        text: "Philosophy",
+        href: "https://hackclub.com/philosophy/?utm_source=the-hacker-press&utm_content=website-footer",
       },
       {
-        text: "Instagram",
-        href: "https://www.instagram.com/hackclub",
+        text: "Join the Community",
+        href: "https://hackclub.com/slack?reason=The%20Hacker%20Press&utm_source=the-hacker-press&utm_content=website-footer",
       },
-    ],
-  },
-  {
-    title: "",
-    links: [
       {
-        text: "Email us",
-        href: "mailto:newspaper@hackclub.com",
+        text: "Press Inquiries",
+        href: "https://hackclub.com/press/?utm_source=the-hacker-press&utm_content=website-footer",
       },
+      {
+        text: "Donate (pls)",
+        href: "https://hackclub.com/philanthropy/?utm_source=the-hacker-press&utm_content=website-footer",
+      }
     ],
   },
 ];
+
+
+/* 
+Modifying the social medias
+- iconPath references a list `icons`
+- import them and add them to the `icons` object where needed
+- icons should be stored in `src/assets/icons/` as svgs
+*/
+const socialMedias = [
+  {
+    name: "GitHub",
+    href: "https://github.com/hackclub",
+    iconPath: "github",
+  },
+  {
+    name: "Twitter",
+    href: "https://twitter.com/hackclub",
+    iconPath: "twitterX",
+  },
+  {
+    name: "Instagram",
+    href: "https://instagram.com/hackclub",
+    iconPath: "instagram",
+  },
+  {
+    name: "YouTube",
+    href: "https://youtube.com/@hackclubHQ",
+    iconPath: "youtube",
+  },
+  {
+    name: "Email Hack Club - team@hackclub.com",
+    href: "mailto:team@hackclub.com",
+    iconPath: "email",
+  }
+];
+
 ---
 
 <footer class="flex flex-col md:flex-row px-4 py-6 md:px-30 bg-accent-header">
-  <p class="text-accent-orange font-vt323 md:text-right text-2xl writing-lr mr-3" aria-hidden="true">The Hacker Press</p>
+  <p class="text-accent-orange font-vt323 md:text-right text-2xl writing-lr mr-3" aria-hidden="true">The Hacker Press_</p>
   <!-- warning - "writing-lr" is NOT a tailwind class and is located in global.css -->
-  <div class="w-full max-w-4xl font-atkinson">
-    <div class="max-w-none text-text-accent">
+  <div class="w-3xl max-w-fit font-atkinson">
+    <div class="text-text-accent">
       <p class="text-base mb-10 sm:mb-4">
-        The Hacker Press is an online newsletter built by teens at Hack Club.
+        The Hacker Press is an online blog built by teens at Hack Club which hopefully works. We document the cool things Hack Club does like the various events, as well as what goes on behind the scenes to make it all happen!
       </p>
 
-      <div class="flex flex-col sm:flex-row gap-8 sm:gap-17">
+      <div class="flex flex-row gap-14">
         {
           linkColumns.map((column) => (
             <div>
-              {column.title ? (
-               <p class="text-[#a7ef5f] uppercase font-plex-sans text-xs font-bold mb-2">{column.title}</p>
-              ) : (
-                <Image src={HcFlag} alt="Hack Club flag logo" class="w-28 mb-4" />
-              )}
-              <ul class="space-y-2">
+              <h2 class="text-[#FAAA40] uppercase font-plex-sans text-xs font-bold mb-2">{column.title}</h2>
+              <ul class="space-y-1">
                 {column.links.map((link) => (
                   <li>
                     <a
                       href={link.href}
-                      class="flex items-center text-base hover:underline"
+                      class="flex items-center text-base hover:underline w-fit"
                     >
-                      <ArrowRight class="w-4 h-4 mr-4" />
+                      <ArrowRight class="w-4 h-4 mr-3" />
                       {link.text}
                     </a>
                   </li>
@@ -80,24 +123,47 @@ const linkColumns = [
             </div>
           ))
         }
+        <div>
+          <HcFlag class="w-30 mb-4 h-fit" alt="" />
+          <h2 class="sr-only">Hack Club's socials</h2>
+          <ul class="flex flex-row gap-2">
+            {socialMedias.map((social) => {
+              const IconComponent = icons[social.iconPath as string];
+              const tooltipId = `tooltip-${social.iconPath}`;
+              return (
+                <li class="relative group">
+                  <a target="_blank" rel="noopener noreferrer" href={social.href} aria-label={social.name} data-tooltip-target={tooltipId} class="text-white">
+                    <IconComponent class="fill-white" aria-hidden="true" />
+                  </a>
+                  <div id={tooltipId} role="tooltip" aria-hidden="true" class="hidden absolute -left-3 rounded-lg bg-black py-1.5 px-3 font-instrument text-sm text-white group-hover:block group-focus-within:block">
+                    {social.name}
+                  </div> /* tooltip - https://www.material-tailwind.com/docs/html/tooltip */
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       </div>
     </div>
 
     <div class="mt-8">
-      <p class="text-text-accent [&_a]:text-accent">
+      <p class="text-text-accent [&_a]:text-accent mb-4">
         The code for this website is licensed under the <a
           href="https://github.com/hackclub/newspaper/blob/main/LICENSE.md"
           target="_blank"
-          class="underline">MIT License</a
-        >. Article text is licensed under <a
+          class="underline">MIT&nbsp;License</a
+        >. Article content is licensed under the <a
           href="https://creativecommons.org/licenses/by-sa/4.0/deed.en"
           target="_blank"
-          class="underline">CC BY-SA 4.0</a
-        >. <br />
+          class="underline"
+          aria-label="Creative Commons Attribution-ShareAlike 4.0 International">CC&nbsp;BY&#8209;SA&nbsp;4.0</a
+        > license, unless otherwise stated.
+      </p>
+
+      <p class="text-text-accent [&_a]:text-accent">
         © {new Date().getFullYear()}
-        <a href="https://hackclub.com" class="underline" target="_blank"
-          >Hack Club</a
-        >, a 501(c)(3) nonprofit (EIN: 81-2908499)
+        <a href="https://hackclub.com" class="underline" target="_blank">Hack Club</a>,
+        a 501(c)(3) nonprofit (EIN: 81-2908499)
       </p>
     </div>
   </div>
