@@ -1,20 +1,18 @@
 ---
-import { Image } from "astro:assets";
 import HcFlagTop from "@assets/hc-flag-top.svg";
-import { markHTMLString } from "astro/runtime/server/escape.js";
 
 const navItems = [
   { href: "/", label: "Home" },
   { href: "/archives", label: "The Archives" },
-  { href: "/roundup", label: "Weekly Roundup" },
-  { href: "/newsletter", label: "Newsletter" }
+  { href: "/newsletter", label: "Newsletter" },
+  { href: "/about", label: "About" },
 ];
 
 const { themeName }: { themeName?: string } = Astro.props;
 
 const themes = {
-  light: {textColour: "text-text", textHoverColour: "hover:text-black-accent", backgroundColour: "bg-mantle", margin: "md:mx-20"},
-  dark: {textColour: "text-[#F0F7EC]", textHoverColour: "hover:text-neutral-200", backgroundColour: "bg-accent-header", margin: "md:mx-30"},
+  light: {textColour: "text-text", textHoverColour: "hover:text-black-accent", backgroundColour: "bg-mantle", margin: "md:mx-20", hamburgerColour: "bg-black"},
+  dark: {textColour: "text-[#F0F7EC]", textHoverColour: "hover:text-neutral-200", backgroundColour: "bg-accent-header", margin: "md:mx-30", hamburgerColour: "bg-white"},
 } as const;
 
 const theme = themes[themeName as keyof typeof themes] || themes.light;
@@ -28,7 +26,7 @@ const theme = themes[themeName as keyof typeof themes] || themes.light;
           class="w-28 h-auto"
           aria-hidden="true"
         />
-        <p class=`font-lora ${theme.textColour} text-2xl`>The Hacker Press</p>
+        <p class=`hidden md:block font-lora ${theme.textColour} text-2xl`>The Hacker Press</p>
       </a>
       {
         import.meta.env.DEV && (
@@ -55,30 +53,48 @@ const theme = themes[themeName as keyof typeof themes] || themes.light;
 
 
     <!-- Mobile -->
-    <label class="md:hidden relative z-40 cursor-pointer px-3 py-6" for="mobile-menu">
-      <input class="peer hidden" type="checkbox" id="mobile-menu" />
-      <div
-        class="relative z-50 block h-[1px] w-7 bg-black bg-transparent content-[''] before:absolute before:top-[-0.35rem] before:z-50 before:block before:h-full before:w-full before:bg-black before:transition-all before:duration-200 before:ease-out before:content-[''] after:absolute after:right-0 after:bottom-[-0.35rem] after:block after:h-full after:w-full after:bg-black after:transition-all after:duration-200 after:ease-out after:content-[''] peer-checked:bg-transparent before:peer-checked:top-0 before:peer-checked:w-full before:peer-checked:rotate-45 before:peer-checked:transform after:peer-checked:bottom-0 after:peer-checked:w-full after:peer-checked:-rotate-45 after:peer-checked:transform"
-      >
-      </div>
-      <div
-        class="fixed top-0 right-0 z-40 h-full w-full translate-x-full overflow-y-auto overscroll-y-none transition duration-500 peer-checked:translate-x-0"
-      >
-        <div class="float-right h-full w-full bg-background/75 backdrop-saturate-[180%] backdrop-blur-[20px] px-6 pt-12 shadow-2xl">
-            <ul>
-              {navItems.map((item) => (
-                <li class="mb-4">
-                  <a
-                    href={item.href}
-                    class=`${theme.textColour} ${theme.textHoverColour} text-2xl transition-colors duration-200`
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-        </div>
-      </div>
-    </label>
+    <label class="relative z-40 flex items-center gap-3 px-3 py-6" for="mobile-menu">
+  <input class="peer hidden" type="checkbox" id="mobile-menu" />
+
+  <!-- Hamburger -->
+  <div
+    class="relative z-50 block h-[1px] w-7 bg-transparent
+      before:absolute before:top-[-0.35rem] before:block before:h-full before:w-full before:bg-black before:transition-all before:duration-200 before:ease-out
+      after:absolute after:bottom-[-0.35rem] after:block after:h-full after:w-full after:bg-black after:transition-all after:duration-200 after:ease-out
+      peer-checked:before:top-0 peer-checked:before:rotate-45 peer-checked:after:bottom-0 peer-checked:after:-rotate-45"
+  ></div>
+
+  <!-- Logo (hidden until open) -->
+  <div
+    class="opacity-0 translate-x-[-0.5rem] text-xl font-semibold transition-all duration-300 ease-out peer-checked:opacity-100 peer-checked:translate-x-0"
+  >
+    MyLogo
+  </div>
+
+  <!-- Overlay -->
+  <div
+    class="fixed inset-0 z-40 hidden h-full w-full bg-black/50 backdrop-blur-sm peer-checked:block"
+  ></div>
+
+  <!-- Menu Panel -->
+  <div
+    class="fixed top-0 right-0 z-40 h-full w-full translate-x-full overflow-y-auto transition-transform duration-500 ease-out peer-checked:translate-x-0"
+  >
+    <div class="float-right min-h-full w-[85%] bg-white px-6 pt-12 shadow-2xl">
+<ul>
+            {navItems.map((item) => (
+              <li class="mb-4">
+                <a
+                  href={item.href}
+                  class=`${theme.textColour} ${theme.textHoverColour} text-2xl transition-colors duration-200`
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+    </div>
+  </div>
+</label>
   </nav>
 </div>
