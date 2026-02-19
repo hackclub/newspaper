@@ -40,7 +40,8 @@ const theme = themes[themeName as keyof typeof themes] || themes.light;
       <li>
         <a
           href={item.href}
-          class={`${theme.textColour} ${theme.textHoverColour} transition-colors duration-200`}
+          class={`${theme.textColour} ${theme.textHoverColour} transition-colors duration-200 ${Astro.url.pathname === item.href ? "font-bold pointer-events-none" : ""}`}
+          aria-current={Astro.url.pathname === item.href ? "page" : undefined}
         >
           {item.label}
         </a>
