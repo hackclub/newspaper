@@ -11,90 +11,75 @@ const navItems = [
 const { themeName }: { themeName?: string } = Astro.props;
 
 const themes = {
-  light: {textColour: "text-text", textHoverColour: "hover:text-black-accent", backgroundColour: "bg-mantle", margin: "md:mx-20", hamburgerColour: "bg-black"},
-  dark: {textColour: "text-[#F0F7EC]", textHoverColour: "hover:text-neutral-200", backgroundColour: "bg-accent-header", margin: "md:mx-30", hamburgerColour: "bg-white"},
+  light: {textColour: "text-text", textHoverColour: "hover:text-black-accent", backgroundColour: "bg-mantle", margin: "md:px-20", hamburgerColour: "bg-black"},
+  dark: {textColour: "text-[#F0F7EC]", textHoverColour: "hover:text-neutral-200", backgroundColour: "bg-accent-header", margin: "md:px-30", hamburgerColour: "bg-white"},
 } as const;
 
 const theme = themes[themeName as keyof typeof themes] || themes.light;
 ---
 
-<div class=`${theme.backgroundColour}`>
-  <nav class=`flex justify-between items-center mx-5 ${theme.margin}`>
-      <div class="flex items-center gap-4">
-      <a href="/" class="flex items-center space-x-2">
-        <HcFlagTop
-          class="w-28 h-auto"
-          aria-hidden="true"
-        />
-        <p class=`hidden md:block font-lora ${theme.textColour} text-2xl`>The Hacker Press</p>
-      </a>
-      {
-        import.meta.env.DEV && (
-          <span class="bg-orange-400 text-crust font-extrabold px-3 py-1 rounded-full text-lg font-mono">
-            DEV
-          </span>
-        )
-      }
+<nav class={`flex justify-between items-center px-5 ${theme.margin} ${theme.backgroundColour}`}>
+  <div class="flex items-center gap-4">
+  <a href="/" class="flex items-center space-x-2">
+    <HcFlagTop
+      class="w-28 h-auto"
+      aria-hidden="true"
+    />
+    <p class={`hidden md:block font-lora ${theme.textColour} text-2xl`}>The Hacker Press</p>
+  </a>
+  {
+    import.meta.env.DEV && (
+      <span class="bg-orange-400 text-crust font-extrabold px-3 py-1 rounded-full text-lg font-mono">DEV</span>
+    )
+  }
     </div>
 
-    <!-- Desktop -->
-    <ul class="hidden md:flex font-lexend items-center space-x-8 text-md">
-      {navItems.map((item) => (
-        <li>
-          <a
-            href={item.href}
-            class=`${theme.textColour} ${theme.textHoverColour} transition-colors duration-200`
-          >
-            {item.label}
-          </a>
-        </li>
-      ))}
-    </ul>
+  <!-- Desktop -->
+  <ul class="hidden md:flex font-lexend items-center space-x-8 text-md">
+    {navItems.map((item) => (
+      <li>
+        <a
+          href={item.href}
+          class={`${theme.textColour} ${theme.textHoverColour} transition-colors duration-200`}
+        >
+          {item.label}
+        </a>
+      </li>
+    ))}
+  </ul>
 
 
-    <!-- Mobile -->
-    <label class="relative z-40 flex items-center gap-3 px-3 py-6" for="mobile-menu">
-  <input class="peer hidden" type="checkbox" id="mobile-menu" />
-
-  <!-- Hamburger -->
-  <div
-    class="relative z-50 block h-[1px] w-7 bg-transparent
-      before:absolute before:top-[-0.35rem] before:block before:h-full before:w-full before:bg-black before:transition-all before:duration-200 before:ease-out
-      after:absolute after:bottom-[-0.35rem] after:block after:h-full after:w-full after:bg-black after:transition-all after:duration-200 after:ease-out
-      peer-checked:before:top-0 peer-checked:before:rotate-45 peer-checked:after:bottom-0 peer-checked:after:-rotate-45"
-  ></div>
-
-  <!-- Logo (hidden until open) -->
-  <div
-    class="opacity-0 translate-x-[-0.5rem] text-xl font-semibold transition-all duration-300 ease-out peer-checked:opacity-100 peer-checked:translate-x-0"
-  >
-    MyLogo
-  </div>
-
-  <!-- Overlay -->
-  <div
-    class="fixed inset-0 z-40 hidden h-full w-full bg-black/50 backdrop-blur-sm peer-checked:block"
-  ></div>
-
-  <!-- Menu Panel -->
-  <div
-    class="fixed top-0 right-0 z-40 h-full w-full translate-x-full overflow-y-auto transition-transform duration-500 ease-out peer-checked:translate-x-0"
-  >
-    <div class="float-right min-h-full w-[85%] bg-white px-6 pt-12 shadow-2xl">
-<ul>
-            {navItems.map((item) => (
-              <li class="mb-4">
-                <a
-                  href={item.href}
-                  class=`${theme.textColour} ${theme.textHoverColour} text-2xl transition-colors duration-200`
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
+  <!-- Mobile -->
+  <label class="block md:hidden z-40 cursor-pointer px-3 py-6" for="mobile-menu">
+    <input class="peer hidden" type="checkbox" id="mobile-menu" />
+    <!-- due to uh.. tailwind peer jank... the peer/checkbox stuff is in global.css#menu-hamburger:checked -->
+    <div id="menu-hamburger" class="relative w-[20px] h-[15px] cursor-pointer transition-transform duration-500 z-50">
+      <!-- to save space, line is a shortcut for various tailwind classes at glocal.css[.line] -->
+      <span class={`line top-0 ${theme.hamburgerColour}`}></span>
+      <span class={`line top-[6px] ${theme.hamburgerColour}`}></span>
+      <span class={`line top-[6px] ${theme.hamburgerColour}`}></span>
+      <span class={`line top-[12px] ${theme.hamburgerColour}`}></span>
     </div>
-  </div>
-</label>
-  </nav>
-</div>
+    <div
+      class="fixed inset-0 z-40 hidden h-full w-full bg-black/50 backdrop-blur-sm peer-checked:block"
+    >&nbsp;</div>
+    <div
+        class="fixed top-0 right-0 z-40 h-full w-full translate-x-full overflow-y-auto overscroll-y-none transition duration-500 peer-checked:translate-x-0"
+    >
+      <div class="float-right min-h-full w-[85%] bg-white px-6 pt-12 shadow-2xl">
+        <menu>
+          {navItems.map((item) => (
+            <li class="mb-3">
+              <a
+                href={item.href}
+                class={`text-2xl transition-colors duration-200`}
+             >
+               {item.label}
+             </a>
+            </li>
+          ))}
+        </menu>
+      </div>
+    </div>
+  </label>
+</nav>

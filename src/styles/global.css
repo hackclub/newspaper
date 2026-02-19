@@ -142,3 +142,28 @@ body {
     writing-mode: sideways-lr;
   }
 }
+
+.line {
+  @apply absolute left-0 block h-[3px] w-full rounded-[9px]
+         transition-all duration-200 ease-in-out;
+}
+
+#mobile-menu:checked ~ #menu-hamburger span {
+  background-color: black;
+}
+
+/* #mobile-menu:checked = box clicked, we love css */
+#mobile-menu:checked ~ #menu-hamburger span:nth-child(1),
+#mobile-menu:checked ~ #menu-hamburger span:nth-child(4) {
+  top: 6px;
+  width: 0;
+  left: 50%;
+}
+
+#mobile-menu:checked ~ #menu-hamburger span:nth-child(2) {
+  transform: rotate(45deg);
+}
+
+#mobile-menu:checked ~ #menu-hamburger span:nth-child(3) {
+  transform: rotate(-45deg);
+}
