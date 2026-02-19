@@ -76,7 +76,7 @@ const socialMedias = [
   },
   {
     name: "Instagram",
-    href: "https://instagram.com/hackclub",
+    href: "https://instagram.com/@starthackclub",
     iconPath: "instagram",
   },
   {
@@ -102,7 +102,7 @@ const socialMedias = [
         The Hacker Press is an online blog built by teens at Hack Club which hopefully works. We document the cool things Hack Club does like the various events, as well as what goes on behind the scenes to make it all happen!
       </p>
 
-      <div class="flex flex-row gap-14">
+      <div class="flex flex-col md:flex-row gap-14">
         {
           linkColumns.map((column) => (
             <div>
@@ -126,7 +126,7 @@ const socialMedias = [
         <div>
           <HcFlag class="w-30 mb-4 h-fit" alt="" />
           <h2 class="sr-only">Hack Club's socials</h2>
-          <ul class="flex flex-row gap-2">
+          <ul class="flex flex-row flex-wrap gap-2">
             {socialMedias.map((social) => {
               const IconComponent = icons[social.iconPath as string];
               const tooltipId = `tooltip-${social.iconPath}`;
