@@ -60,7 +60,7 @@ const {
     {metaData.title && (
       <!-- Oh you thought it was over? -->
       <!-- Start of Rich Search Data -->
-      <script type="application/ld+json" set:html={JSON.stringify({
+      <script is:inline type="application/ld+json" set:html={JSON.stringify({
         "@context": "https://schema.org",
         "@type": "BlogPosting",
         "headline": metaData.title,
@@ -80,7 +80,7 @@ const {
         "datePublished": metaData.datePublished
           ? metaData.datePublished.toISOString().split("T")[0]
           : undefined
-      })} />
+      })} >
       </script>
       <!-- End of Rich Search Data -->
     )}
