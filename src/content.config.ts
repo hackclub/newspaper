@@ -7,17 +7,18 @@ const tagKeys = Object.keys(tags) as [string, ...string[]];
 
 const posts = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/articles/" }),
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    image: z.string().optional(),
-    authors: z.array(z.string()),
-    helpers: z.array(z.string()).optional(),
-    tags: z.array(z.enum(tagKeys)).optional(),
-    date: z.date(),
-    published: z.boolean().default(true),
-    slug: z.string(),
-  }),
+  schema: ({ image }) => 
+    z.object({
+      title: z.string(),
+      description: z.string(),
+      image: image(),
+      authors: z.array(z.string()),
+      helpers: z.array(z.string()).optional(),
+      tags: z.array(z.enum(tagKeys)).optional(),
+      date: z.date(),
+      published: z.boolean().default(true),
+      slug: z.string(),
+    }),
 });
 
 export const collections = { posts };

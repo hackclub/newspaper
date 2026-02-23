@@ -1,5 +1,6 @@
 ---
 // this helper layout generates the article cards on the homepage
+import { Image } from 'astro:assets';
 import { formatDate } from "@util";
 import writersMetadataImport from "../data/writers.json" assert { type: "json" };
 
@@ -35,7 +36,7 @@ const { data } = Astro.props;
   href={`/posts/${data.slug}`}
   class="text-xl transition-colors text-text font-lora"
   >
-  <img src={data.image} alt={data.description} class="w-full h-80 object-cover mb-2 rounded-lg" />
+  <Image width={1020} height={510} src={data.image || "https://picsum.photos/510/1020"} class="w-full h-80 object-cover mb-2 rounded-lg" alt="" />
   <h3>{data.title}</h3>
   </a>
   <div class="flex flex-col mt-2">
