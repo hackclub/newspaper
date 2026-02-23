@@ -6,6 +6,8 @@ import vercel from "@astrojs/vercel";
 
 import sitemap from "@astrojs/sitemap";
 
+import mdx from "@astrojs/mdx";
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://news.hackclub.com",
@@ -57,5 +59,5 @@ export default defineConfig({
   },
 
   adapter: vercel(),
-  integrations: [sitemap()],
+  integrations: [sitemap(), mdx()],
 });
