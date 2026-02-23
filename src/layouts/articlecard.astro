@@ -1,0 +1,57 @@
+---
+// this helper layout generates the article cards on the homepage
+import { formatDate } from "@util";
+import writersMetadataImport from "../data/writers.json" assert { type: "json" };
+
+interface Writer {
+  name: string;
+  description: string;
+  profile: string | null;
+  user_id: string;
+  team: boolean;
+}
+
+const writersMetadata: Record<string, Writer> = writersMetadataImport;
+
+interface Props {
+  data: {
+    title: string;
+    description: string;
+    image?: string;
+    slug: string;
+    date: Date;
+    authors: string[];
+    helpers?: string[];
+    tags?: string[];
+    published?: boolean;
+  };
+}
+
+const { data } = Astro.props;
+---
+
+<div class="flex flex-col">
+  <a
+  href={`/posts/${data.slug}`}
+  class="text-xl transition-colors text-text font-lora"
+  >
+  <img src={data.image} alt={data.description} class="w-full h-80 object-cover mb-2 rounded-lg" />
+  <h3>{data.title}</h3>
+  </a>
+  <div class="flex flex-col mt-2">
+    <p class="font-lexend font-light text-[#717171]">
+      {formatDate(data.date)}
+    </p>
+    <p class="font-lexend font-medium text-[#6A6A6A]">
+      {
+        data.authors.map((author, index) => {
+          const name = writersMetadata[author].name as string;
+          const isLast = index === data.authors.length - 1;
+          return (
+            <span>{name}{!isLast && ", "}</span>
+          );
+        })
+      }
+    </p>
+  </div>
+</div>

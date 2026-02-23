@@ -6,7 +6,7 @@ import BlogPost from "@layouts/blogpost.astro";
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
   return posts.map((post) => ({
-    params: { slug: post.data.properties.Slug },
+    params: { slug: post.data.slug },
     props: post,
   }));
 }

@@ -20,17 +20,16 @@ const { post } = Astro.props;
 const writersMetadata: Record<string, Writer> = writersMetadataImport;
 
 const metaData = {
-  title: post.data.properties.Name,
-  description: post.data.properties.Description,
-  image: post.data.properties.Image,
-  imageAlt: post.data.properties.ImageAlt,
-  url: `https://news.hackclub.com/${post.data.properties.Slug}`,
-  authors: post.data.properties.Authors.map(author => writersMetadata[author]?.name as string).filter(Boolean),
+  title: post.data.title,
+  description: post.data.description,
+  image: post.data.image,
+  url: `https://news.hackclub.com/${post.data.slug}`,
+  authors: post.data.authors.map(author => writersMetadata[author]?.name as string).filter(Boolean),
   type: "article",
 }
 ---
 
-<Layout title={post.data.properties.Name} headerTheme="dark" metaData={metaData}>
+<Layout title={post.data.title} headerTheme="dark" metaData={metaData}>
       <div class="mx-auto text-text">
         <header
           class="flex flex-col md:flex-row gap-5 w-full py-8 px-5 md:px-30 pt-10 bg-accent-header text-white pb-6 sm:pb-8"
@@ -41,22 +40,22 @@ const metaData = {
             <h1
               class="text-4xl sm:text-5xl/[130%] font-lora mb-6 w-full max-w-4xl"
             >
-              {post.data.properties.Name}
+              {post.data.title}
             </h1>
             <div class="flex flex-col xl:flex-row gap-10">
             <div class="ml-[7px] shadow-[-7px_7px_orange]">
               <img
-                src={post.data.properties.Image}
-                alt={post.data.properties.ImageAlt}
+                src={post.data.image}
+                alt=""
                 class="w-[50vw] max-w-full h-100 object-cover max-h-full"
               />
             </div>
             <div>
-              <p class="text-lg font-atkinson sm:text-2xl mb-5">{post.data.properties.Description}</p>
+              <p class="text-lg font-atkinson sm:text-2xl mb-5">{post.data.description}</p>
               <p class="text-gray-400 font-lexend font-light">
                   <span class="font-normal">Written</span> by 
-                    {post.data.properties.Authors.map((author, index) => {
-                    const isLast = index === post.data.properties.Authors.length - 1;
+                    {post.data.authors.map((author, index) => {
+                    const isLast = index === post.data.authors.length - 1;
                     if (!writersMetadata[author]) {
                       return <span>Unknown Author{!isLast && ", "}</span>;
                     }
@@ -68,12 +67,12 @@ const metaData = {
                 }
               </p>
               <p class="text-gray-400 text-lexend mb-5">
-                  {post.data.properties.Date
-                  ? formatDate(post.data.properties.Date)
+                  {post.data.date
+                  ? formatDate(post.data.date)
                   : "No date? :c"}
               </p>
               <div class="font-plex-sans">
-                {post.data.properties.Authors.map((author, index) => {
+                {post.data.authors.map((author, index) => {
                   if (!writersMetadata[author]) {
                     return <span>We faced an error :(</span>;
                   }
