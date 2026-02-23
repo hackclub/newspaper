@@ -1,0 +1,26 @@
+{
+    "homepage": {
+        "name": "Homepage",
+        "description": "# INTERNAL tag which places an article on the homepage #",
+        "colour": "#007BFF",
+        "internal": true
+    },
+    "featured": {
+        "name": "Featured",
+        "description": "# INTERNAL tag which pins an article to the top of the homepage #",
+        "colour": "#111111",
+        "internal": true
+    },
+    "insider-look": {
+        "name": "Insider Look",
+        "description": "Stories written by Hack Club's staff, highlighting behind-the-scenes of the programs and epic real life events we've run, what's going on at our HQ, as well as the mistakes we've made and all the silliness along the way.",
+        "colour": "#FF5733",
+        "internal": false
+    },
+    "hacker-perspective": {
+        "name": "A Hacker's Perspective",
+        "description": "Looking for what it's like to be a Hack Clubber (member of Hack Club)? You're in the right place! This topic features all the stories written by teenage Hack Clubbers, from their experiences at our Hackathons to journeys as programmers and beyond!",
+        "colour": "#33FF57",
+        "internal": false
+    }
+}
