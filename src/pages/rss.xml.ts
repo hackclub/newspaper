@@ -10,9 +10,9 @@ export async function GET(context: APIContext) {
     description: "An online newsletter built by teens at Hack Club.",
     site: context.site!,
     items: posts.map((post) => ({
-      title: post.data.properties.Name,
-      pubDate: post.data.properties.Date,
-      link: `/posts/${post.data.properties.Slug}`,
+      title: post.data.title,
+      pubDate: post.data.date,
+      link: `/posts/${post.data.slug}`,
     })),
     customData: `<language>en-us</language>`,
     stylesheet: "/rss/styles.xsl",
